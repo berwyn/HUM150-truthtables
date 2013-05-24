@@ -22,7 +22,7 @@ namespace HUM150_TruthTables
 
         public bool Hook(Proposition prop)
         {
-            if (And(prop.Value))
+            if (And(prop))
                 return true;
             if (!Value && prop.Value)
                 return true;
