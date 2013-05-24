@@ -8,32 +8,40 @@ namespace HUM150_TruthTables
 {
     public class Proposition
     {
-        public Proposition()
+        public bool FirstValue { get; set; }
+
+        public Proposition(bool first)
         {
-            
-        }
-        public void Equals()
-        {
-            
-        }
-        public void Hook()
-        {
-            
+            FirstValue = first;
         }
 
-        public void And()
+        public bool Equals(bool secondValue)
         {
-            
+            return FirstValue == secondValue;
         }
 
-        public void Or()
+        public bool Hook(bool secondValue)
         {
-            
+            if (And(secondValue))
+                return true;
+            if (!FirstValue && secondValue)
+                return true;
+            return !FirstValue && !secondValue;
         }
 
-        public void NotEqual()
+        public bool And(bool secondValue)
         {
-            
+            return FirstValue && secondValue;
+        }
+
+        public bool Or(bool secondValue)
+        {
+            return FirstValue || secondValue;
+        }
+
+        public bool NotEqual(bool secondValue)
+        {
+            return FirstValue != secondValue;
         }
     }
 }
