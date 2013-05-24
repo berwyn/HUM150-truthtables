@@ -117,10 +117,6 @@
       <Project>{e708ac99-605b-42a0-8d20-abca8fe42dd2}</Project>
       <Name>MahApps.Metro.Resources</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MahApps.Metro\MahApps.Metro.csproj">
-      <Project>{5b1710d2-5dc8-4754-91b2-19165de49b3d}</Project>
-      <Name>MahApps.Metro</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MahApps.Metro\MahApps.Metro.NET45.csproj">
       <Project>{942d11c4-29f5-46c4-8c14-4b976d56c637}</Project>
       <Name>MahApps.Metro.NET45</Name>
