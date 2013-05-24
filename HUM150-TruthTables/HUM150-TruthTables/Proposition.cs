@@ -1,19 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using HUM150_TruthTables.Annotations;
 
 namespace HUM150_TruthTables
 {
-    public class Proposition
+    public class Proposition : INotifyPropertyChanged
     {
-        public bool Value { get; set; }
 
-        public Proposition(bool first)
+        #region Properties
+
+        private bool _value;
+        public bool Value
         {
-            Value = first;
+            get { return _value; }
+            set 
+            { 
+                this._value = value;
+                OnPropertyChanged("Value");
+            }
         }
+
+        #endregion
+
+        #region Members
 
         public bool Equals(Proposition prop)
         {
@@ -43,5 +57,20 @@ namespace HUM150_TruthTables
         {
             return Value != prop.Value;
         }
+
+        #endregion Members
+
+        #region INotifyPropertyChanged Members
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #endregion
     }
 }
