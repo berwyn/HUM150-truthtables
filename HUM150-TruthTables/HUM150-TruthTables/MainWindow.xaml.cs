@@ -52,12 +52,5 @@ namespace HUM150_TruthTables
             PropositionsList.ItemsSource = Propositions;
             _table = new TruthTable();
         }
-
-        private void OnMouseEnter(object sender, MouseEventArgs e)
-        {
-            var count = Propositions.Count(t => !t.Definition.Equals(""));
-            _table.TableCreate(count);
-            Console.WriteLine(count);
-        }
     }
 }

@@ -15,26 +15,32 @@ namespace HUM150_TruthTables
         private Table table1;
         private List<string> myChars = new List<string>{"q", "p", "r", "s", "t"}; 
 
-        public void TableCreate(int count)
+        public void CreateTable(int count)
         {
+            // Create the parent FlowDocument...
             flowDoc = new FlowDocument();
 
-            var t = new Table();
-            for (var i = 0; i < 7; i++)
+            // Create the Table...
+            table1 = new Table();
+            table1.BringIntoView();
+            // ...and add it to the FlowDocument Blocks collection.
+            flowDoc.Blocks.Add(table1);
+
+            // Set some global formatting properties for the table.
+            table1.CellSpacing = 10;
+            table1.Background = Brushes.White;
+            // Create 6 columns and add them to the table's Columns collection. 
+            int numberOfColumns = 6;
+            for (int x = 0; x < numberOfColumns; x++)
             {
-                t.Columns.Add(new TableColumn());
+                table1.Columns.Add(new TableColumn());
+
+                // Set alternating background colors for the middle colums. 
+                if (x % 2 == 0)
+                    table1.Columns[x].Background = Brushes.Beige;
+                else
+                    table1.Columns[x].Background = Brushes.LightSteelBlue;
             }
-
-            var row = new TableRow {Background = Brushes.Blue, FontSize = 40, FontWeight = FontWeights.Bold};
-
-            row.Cells.Add(new TableCell(new Paragraph(new Run("I span 7 columns"))));
-            row.Cells[0].ColumnSpan = 6;
-
-
-            var rg = new TableRowGroup();
-            rg.Rows.Add(row);
-            t.RowGroups.Add(rg);
-            flowDoc.Blocks.Add(t);
         }
 
        public void FillWithOnes()
