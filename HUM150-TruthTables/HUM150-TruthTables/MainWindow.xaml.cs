@@ -21,9 +21,43 @@ namespace HUM150_TruthTables
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
+        private readonly List<Proposition> _propositions = new List<Proposition>(5)
+            {
+                new Proposition()
+                    {
+                        Value = false,
+                        Definition = ""
+                    },
+                    new Proposition()
+                    {
+                        Value = false,
+                        Definition = ""
+                    },
+                    new Proposition()
+                    {
+                        Value = false,
+                        Definition = ""
+                    },
+                    new Proposition()
+                    {
+                        Value = false,
+                        Definition = ""
+                    },
+                    new Proposition()
+                    {
+                        Value = false,
+                        Definition = ""
+                    }
+            };
+        public List<Proposition> Propositions
+        {
+            get { return _propositions; }
+        }
+
         public MainWindow()
         {
             InitializeComponent();
+            this.PropositionsList.ItemsSource = Propositions;
         }
     }
 }

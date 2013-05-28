@@ -25,6 +25,17 @@ namespace HUM150_TruthTables
             }
         }
 
+        private string _definition;
+        public string Definition
+        {
+            get { return _definition; }
+            set
+            {
+                this._definition = value; 
+                OnPropertyChanged("Definition");
+            }
+        }
+
         #endregion
 
         #region Members
