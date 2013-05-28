@@ -35,8 +35,8 @@
                     </ListBox.ItemTemplate>
                 </ListBox>
             </controls:MetroTabItem>
-            <controls:MetroTabItem Header="Truth Tables">
-
+            <controls:MetroTabItem Header="Truth Tables" MouseEnter="OnMouseEnter">
+                
             </controls:MetroTabItem>
         </controls:MetroAnimatedSingleRowTabControl>
     </controls:MetroContentControl>

@@ -60,10 +60,6 @@
     </ApplicationDefinition>
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Proposition.cs" />
-    <Compile Include="PropositionView.xaml.cs">
-      <DependentUpon>PropositionView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="PropositionViewModel.cs" />
     <Compile Include="TruthTable.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
