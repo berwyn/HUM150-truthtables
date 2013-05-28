@@ -28,15 +28,15 @@
                                     <ColumnDefinition Width="6*" />
                                     <ColumnDefinition Width="3*" />
                                 </Grid.ColumnDefinitions>
-                                <TextBox Grid.Column="0" MinLines="1" MaxLines="1" Text="{Binding Definition, Mode=TwoWay}" />
-                                <controls:ToggleSwitch Grid.Column="1" IsChecked="{Binding Value, Mode=TwoWay}" OnLabel="True" OffLabel="False" />
+                                <TextBox Grid.Column="0" MinLines="1" MaxLines="1" Text="{Binding Definition}" />
+                                <controls:ToggleSwitch Grid.Column="1" IsChecked="{Binding Value}" OnLabel="True" OffLabel="False" />
                             </Grid>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
             </controls:MetroTabItem>
-            <controls:MetroTabItem Header="Truth Tables" MouseEnter="OnMouseEnter">
-                
+            <controls:MetroTabItem Header="Truth Tables" MouseUp="UIElement_OnMouseUp" >
+                <TextBlock Name="PropositionsCount" Height="20" Width="20"></TextBlock>
             </controls:MetroTabItem>
         </controls:MetroAnimatedSingleRowTabControl>
     </controls:MetroContentControl>

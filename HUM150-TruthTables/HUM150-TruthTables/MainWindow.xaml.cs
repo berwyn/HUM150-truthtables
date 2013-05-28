@@ -53,9 +53,10 @@ namespace HUM150_TruthTables
             _table = new TruthTable();
         }
 
-        private void OnMouseEnter(object sender, MouseEventArgs e)
+        private void UIElement_OnMouseUp(object sender, MouseButtonEventArgs e)
         {
             var count = Propositions.Count(t => !t.Definition.Equals(""));
+            PropositionsCount.Text = count.ToString();
             _table.TableCreate(count);
             Console.WriteLine(count);
         }
