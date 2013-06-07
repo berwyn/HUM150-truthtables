@@ -69,6 +69,16 @@ namespace HUM150_TruthTables
             return Value != prop.Value;
         }
 
+        public bool Iff(Proposition prop)
+        {
+            return Equals(prop);
+        }
+
+        public bool Xor(Proposition prop)
+        {
+            return NotEqual(prop) && (prop.Value || Value);
+        }
+
         #endregion Members
 
         #region INotifyPropertyChanged Members
