@@ -20,12 +20,13 @@
     <controls:MetroContentControl>
         <controls:MetroAnimatedSingleRowTabControl>
             <controls:MetroTabItem Header="Propositions">
-                <Grid>
+                <Grid Margin="4,-3,-4,3">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <Button Grid.Row="0" x:Name="AddPropButton" Height="48" Content="Add" Margin="15,0,574,0" Click="AddPropButton_OnClick"/>
+                    <Button Grid.Row="0" x:Name="AddPropButton" Height="48" Content="Add" Margin="10,4,579,1" Click="AddPropButton_OnClick"/>
+                    <Button Grid.Row="0" x:Name="DeletePropButton" Height="48" Content="Delete" Margin="236,4,353,0" Click="DeletePropButton_OnClick"/>
                     <ListBox Grid.Row="1" x:Name="PropositionsList" x:FieldModifier="private" Margin="10" ItemsSource="{Binding}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
@@ -64,9 +65,14 @@
                     <ComboBox
                         Grid.Column="1" 
                         Grid.Row="0"
-                        Height="50">
-                        <ComboBoxItem Content="and" />
-                        <ComboBoxItem Content="or"/>
+                        Height="50"
+                        Name="Sign">
+                        <ComboBoxItem Content="(and)" />
+                        <ComboBoxItem Content="(or)"/>
+                        <ComboBoxItem Content="(hook)"/>
+                        <ComboBoxItem Content="(reverse hook)"/>
+                        <ComboBoxItem Content="(tribar)"/>
+                        <ComboBoxItem Content="(tribar slash)"/>
                     </ComboBox>
                     <ComboBox 
                         Grid.Column="2" 

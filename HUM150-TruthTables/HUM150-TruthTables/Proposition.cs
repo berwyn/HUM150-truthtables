@@ -56,7 +56,7 @@ namespace HUM150_TruthTables
 
         public bool And(Proposition prop)
         {
-            return Value && prop.Value;
+            return this.Value && prop.Value;
         }
 
         public bool Or(Proposition prop)
