@@ -20,23 +20,72 @@
     <controls:MetroContentControl>
         <controls:MetroAnimatedSingleRowTabControl>
             <controls:MetroTabItem Header="Propositions">
-                <ListBox Name="PropositionsList" x:FieldModifier="private" Margin="10">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="6*" />
-                                    <ColumnDefinition Width="3*" />
-                                </Grid.ColumnDefinitions>
-                                <TextBox Grid.Column="0" MinLines="1" MaxLines="1" Text="{Binding Definition}" />
-                                <controls:ToggleSwitch Grid.Column="1" IsChecked="{Binding Value}" OnLabel="True" OffLabel="False" />
-                            </Grid>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0" x:Name="AddPropButton" Height="48" Content="Add" Margin="15,0,574,0" Click="AddPropButton_OnClick"/>
+                    <ListBox Grid.Row="1" x:Name="PropositionsList" x:FieldModifier="private" Margin="10" ItemsSource="{Binding}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="6*" />
+                                        <ColumnDefinition Width="3*" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox Grid.Column="0" MinLines="1" MaxLines="1" Text="{Binding Definition}" />
+                                    <controls:ToggleSwitch Grid.Column="1" IsChecked="{Binding Value}" OnLabel="True" OffLabel="False" />
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
             </controls:MetroTabItem>
-            <controls:MetroTabItem Header="Truth Tables" MouseUp="UIElement_OnMouseUp" >
-                <TextBlock Name="PropositionsCount" Height="20" Width="20"></TextBlock>
+            <controls:MetroTabItem Header="Truth Tables" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="4*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="4*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="8*"/>
+                        <RowDefinition Height="2*"/>
+                    </Grid.RowDefinitions>
+                    <ComboBox 
+                        Grid.Column="0" 
+                        Grid.Row="0"
+                        ItemsSource="{Binding}"
+                        Height="50"
+                        Name="FirstPropList"
+                        DisplayMemberPath="Definition"
+                        SelectedValuePath="Definition" />
+                    <ComboBox
+                        Grid.Column="1" 
+                        Grid.Row="0"
+                        Height="50">
+                        <ComboBoxItem Content="and" />
+                        <ComboBoxItem Content="or"/>
+                    </ComboBox>
+                    <ComboBox 
+                        Grid.Column="2" 
+                        Grid.Row="0"
+                        ItemsSource="{Binding}" 
+                        Height="50" 
+                        Name="SecondPropList"
+                        DisplayMemberPath="Definition"
+                        SelectedValuePath="Definition"/>
+                    <StackPanel
+                        Grid.Column="0"
+                        Grid.Row="1"
+                        Grid.ColumnSpan="3"
+                        Orientation="Horizontal">
+                        <Button Name="SaveResultButton" Content="Save Result" Height="50" Width="250" Click="SaveResultButton_OnClick" Margin="5" />
+                        <Button Name="CalculateButton" Content="Calculate" Height="50" Width="250" Click="CalculateButton_OnClick" Margin="5"/>
+                        <Label Name="ResultLabel" Height="50" Width="250" Margin="5"/>
+                    </StackPanel>
+                </Grid>
             </controls:MetroTabItem>
         </controls:MetroAnimatedSingleRowTabControl>
     </controls:MetroContentControl>
