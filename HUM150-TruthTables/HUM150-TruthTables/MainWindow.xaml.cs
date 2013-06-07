@@ -14,6 +14,7 @@ namespace HUM150_TruthTables
     public partial class MainWindow
     {
         private readonly ObservableCollection<Proposition> _propositions;
+        private bool _result;
 
         public MainWindow()
         {
@@ -32,14 +33,50 @@ namespace HUM150_TruthTables
 
         private void DeletePropButton_OnClick(object sender, RoutedEventArgs e)
         {
-            var propCount = _propositions.Count();
-            if (propCount > 0)
-                _propositions.RemoveAt(propCount - 1);
+            var button = sender as Button;
+            if (button != null)
+            {
+                var prop = button.DataContext as Proposition;
+                if (prop != null)
+                {
+                    _propositions.Remove(prop);
+                }
+            }
         }
 
         private void SaveResultButton_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            var op = String.Empty;
+            switch (Sign.SelectedIndex)
+            {
+                case 0:
+                    op = "and";
+                    break;
+                case 1:
+                    op = "or";
+                    break;
+                case 2:
+                    op = "implies";
+                    break;
+                case 3:
+                    op = "is implied by";
+                    break;
+                case 4:
+                    op = "is true if and only if";
+                    break;
+                case 5:
+                    op = "is exclusively true vs";
+                    break;
+            }
+            var def = String.Format("{0} {1} {2}", _propositions[FirstPropList.SelectedIndex].Definition, op,
+                                    _propositions[SecondPropList.SelectedIndex].Definition);
+            CalculateButton_OnClick(null, null);
+            var prop = new Proposition
+                {
+                    Definition = def,
+                    Value = _result
+                };
+            _propositions.Add(prop);
         }
 
         private void CalculateButton_OnClick(object sender, RoutedEventArgs e)
@@ -52,35 +89,35 @@ namespace HUM150_TruthTables
 
             int sign = Sign.SelectedIndex;
 
-            var result = false;
+            _result = false;
             switch (sign)
             {
                 case 0:
-                    result = prop1.And(prop2);
+                    _result = prop1.And(prop2);
                     break;
 
                     case 1:
-                    result = prop1.Or(prop2);
+                    _result = prop1.Or(prop2);
                     break;
 
                     case 2:
-                    result = prop1.Hook(prop2);
+                    _result = prop1.Hook(prop2);
                     break;
 
                     case 3:
-                    result = prop2.Hook(prop1);
+                    _result = prop2.Hook(prop1);
                     break;
 
                     case 4:
-                    result = prop1.Hook(prop2);
+                    _result = prop1.Iff(prop2);
                     break;
 
                     case 5:
-                    result = prop1.Hook(prop2);
+                    _result = prop1.Xor(prop2);
                     break;
             }
 
-            ResultLabel.Content = result;
+            ResultLabel.Content = _result;
         }
     }
 }
